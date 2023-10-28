@@ -24,8 +24,16 @@ const PLAYERS = [
 // initialize players with image and strength
 const initPlayers = (players) => {
     let detailedPlayers = [];
+
     // Create players using for loop
-    // Type your code here
+    for (let i = 0; i < players.length; i++) {
+        detailedPlayers.push({
+            name: players[i],
+            strength: getRandomStrength(),
+            image: `images/super-${i + 1}.png`, // Construct image path dynamically
+            type: i % 2 === 0 ? "hero" : "villain" // Alternating between heroes and villains
+        });
+    }
 
     return detailedPlayers;
 }
@@ -34,6 +42,9 @@ const initPlayers = (players) => {
 const getRandomStrength = () => {
     // Return a random integer (0,100]
     // Note: You can use Math.random() and Math.ceil()
+
+    let rnum = Math.floor((Math.random()*100)+1)
+    return rnum;
 }
 
 const buildPlayers = (players, type) => {
@@ -43,8 +54,21 @@ const buildPlayers = (players, type) => {
     // depending of type of player(hero|villain)
     // Type your code here
 
+    for (let i = 0; i < players.length; i++) {
+    if(players[i].type== type)
+    {
+        let text = `<div class="player">
+        <img src="${players[i].image}" alt="">
+        <div class="name">${players[i].name}</div>
+        <div class="strength">${players[i].strength}</div>
+        </div>`
+
+        fragment = fragment + text;
+    }}
+
     return fragment;
 }
+
 // Display players in HTML
 const viewPlayers = (players) => {
 
